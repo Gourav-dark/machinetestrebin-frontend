@@ -7,11 +7,11 @@ import Axios from 'axios';
 
 const App = () => {
   const [User, setUser] = useState({
-    "username": "username_01",
+    "username": "",
     "gender": "M",
-    "birthday": "2023-12-20",
+    "birthday": "",
     "status": "Active",
-    "address": "Chinar Park Kolkata"
+    "address": ""
   });
   const [userList, setUserList] = useState([]);
   useEffect(() => {
@@ -37,6 +37,11 @@ const App = () => {
     try {
         const res = await Axios.post("https://localhost:7293/api/Users",User);
         setUserList([...userList, res.data]);
+      setUser({
+        username: "",
+        birthday: "",
+        address:""
+        })
       } catch(error) {
         console.log(error);
       }
